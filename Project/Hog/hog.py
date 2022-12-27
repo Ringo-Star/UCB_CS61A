@@ -95,6 +95,17 @@ def square_update(num_rolls, player_score, opponent_score, dice=six_sided):
 
 # BEGIN PROBLEM 4
 "*** YOUR CODE HERE ***"
+def perfect_square(score):
+    for i in range(score):
+        if score == (i+1)*(i+1):
+            return True
+    return False
+
+def next_perfect_square(score):
+    for i in range(score):
+        if score == (i+1)*(i+1):
+            return (i+2)*(i+2)
+    return None # If score is not a perfect square, nothing is returned
 # END PROBLEM 4
 
 
