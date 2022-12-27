@@ -36,7 +36,6 @@ def roll_dice(num_rolls, dice=six_sided):
     return 1 if sow_sad else sum(all_dice)
     
 
-
 def tail_points(opponent_score):
     """Return the points scored by rolling 0 dice according to Pig Tail.
 
@@ -45,15 +44,13 @@ def tail_points(opponent_score):
     """
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
-    assert opponent_score == int, 'The score must be an integer.'
+    assert type(opponent_score) == int, 'The score must be an integer'
     assert opponent_score >= 0, 'The score can not be negative.'
-    ones = opponent_score % 10
-    tens = (opponent_score % 100 - ones) // 10
     
+    ones = opponent_score % 10
+    tens = (opponent_score % 100 - ones)//10
+
     return 2*abs(tens-ones) + 1
-
-
-    # END PROBLEM 2
 
 
 def take_turn(num_rolls, opponent_score, dice=six_sided):
@@ -70,6 +67,11 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
     assert num_rolls <= 10, 'Cannot roll more than 10 dice.'
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    if num_rolls == 0:
+        return tail_points(opponent_score)
+    else:
+        return roll_dice(num_rolls, dice)
+
     # END PROBLEM 3
 
 
