@@ -1,4 +1,4 @@
 Homework/*/tests/
-Project/*/tests/
+Project/Hog/
 *.ok*
 **/__pycache__/
