@@ -1,4 +1,2 @@
-Homework/*/tests/
-Project/Hog/
-*.ok*
-**/__pycache__/
+.ok_*
+__pycache__/
