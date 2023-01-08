@@ -25,6 +25,17 @@ def num_eights(pos):
     True
     """
     "*** YOUR CODE HERE ***"
+    if pos < 10:
+        if pos == 8:
+            return 1
+        else:
+            return 0
+    
+    else:
+        if pos%10 == 8:
+            return 1+ num_eights(pos//10)
+        else:
+            return num_eights(pos//10)
 
 
 def pingpong(n):
@@ -61,6 +72,20 @@ def pingpong(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n == 1:
+        return 1 
+    else:
+        return pingpong(n-1) + operate(n)
+    
+
+def operate(n):
+    if n == 1:
+        return 1
+    else:
+        if num_eights(n-1) != 0 or (n-1) % 8 == 0:
+            return 0 - operate(n-1)
+        else:
+            return operate(n-1)
 
 
 def next_larger_coin(coin):
@@ -117,9 +142,10 @@ def count_coins(change):
     True
     """
     "*** YOUR CODE HERE ***"
+    
 
 
-anonymous = False  # Change to True if you would like to remain anonymous on the final leaderboard.
+anonymous = True # Change to True if you would like to remain anonymous on the final leaderboard.
 
 
 def beaver(f):
