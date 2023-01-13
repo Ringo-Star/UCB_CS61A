@@ -142,8 +142,13 @@ def count_coins(change):
     True
     """
     "*** YOUR CODE HERE ***"
-    
-    
+    # Basic Cases
+    if change == 0:
+        return 1
+    elif change < 0:
+        return 0
+    else:
+        return count_coins(change-25) + count_coins(change-10) + count_coins(change-5) + count_coins(change-1)
 
 
 anonymous = True # Change to True if you would like to remain anonymous on the final leaderboard.
