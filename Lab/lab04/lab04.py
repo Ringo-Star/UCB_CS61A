@@ -63,6 +63,14 @@ def pascal(row, column):
     6
     """
     "*** YOUR CODE HERE ***"
+    if column < 0 or row < 0:
+        return 0 
+    if column > row:
+        return 0
+    elif column == row:
+        return 1
+    else:
+        return pascal(row-1,column) + pascal(row-1, column-1)
 
 
 def double_eights(n):
@@ -87,3 +95,11 @@ def double_eights(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n < 10:
+        return True if n == 8 else False
+    
+    if n % 10 == 8:
+        return (n//10) % 10 == 8 or double_eights(n//10)
+    
+    else:
+        return double_eights(n//10)
