@@ -29,9 +29,10 @@ def pick(paragraphs, select, k):
     >>> pick(ps, s, 2)
     ''
     """
-    # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
-    # END PROBLEM 1
+    select_idx = [i for i in range(len(paragraphs)) if select(paragraphs[i])]
+
+    return paragraphs[select_idx[k]] if k in range(len(select_idx)) else ''
 
 
 def about(subject):
@@ -48,11 +49,21 @@ def about(subject):
     'Nice pup.'
     """
     assert all([lower(x) == x for x in subject]), 'subjects should be lowercase.'
-    # BEGIN PROBLEM 2
+    
     "*** YOUR CODE HERE ***"
-    # END PROBLEM 2
+    def selcet_any(paragraph):
+        """"Return a list of Bools
+        (True  if any element of subject appears in elements of paragraphs)
+        (False otherwise)"""
 
+        paragraph_normal = paragraph.lower().split()
+        para_nopun = [remove_punctuation(word) for word in paragraph_normal]
+        
+        return any([word in subject for word in para_nopun])
 
+    return selcet_any
+
+        
 def accuracy(typed, source):
     """Return the accuracy (percentage of words typed correctly) of TYPED
     when compared to the prefix of SOURCE that was typed.
@@ -78,9 +89,24 @@ def accuracy(typed, source):
     """
     typed_words = split(typed)
     source_words = split(source)
-    # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
-    # END PROBLEM 3
+    if not typed_words and not source_words:
+        return 100.0
+
+    if not (typed_words and source_words):
+        return 0.0
+    
+    match = 0
+    total = len(typed_words)
+
+    while typed_words and source_words:
+        first_type = typed_words.pop(0)
+        first_source = source_words.pop(0)
+
+        if first_source == first_type:
+            match += 1
+
+    return 100*match/total
 
 
 def wpm(typed, elapsed):
@@ -96,9 +122,9 @@ def wpm(typed, elapsed):
     2.0
     """
     assert elapsed > 0, 'Elapsed time must be positive'
-    # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
-    # END PROBLEM 4
+
+    return len(typed)*12/elapsed
 
 
 ###########
@@ -123,9 +149,12 @@ def autocorrect(typed_word, word_list, diff_function, limit):
     >>> autocorrect("tosting", ["testing", "asking", "fasting"], first_diff, 10)
     'testing'
     """
-    # BEGIN PROBLEM 5
+
     "*** YOUR CODE HERE ***"
-    # END PROBLEM 5
+    diffs = [diff_function(typed_word, word, limit) for word in word_list]
+    idx_min = diffs.index(min(diffs))
+
+    return word_list[idx_min] if min(diffs) <= limit else typed_word
 
 
 def feline_fixes(typed, source, limit):
